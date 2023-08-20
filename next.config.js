@@ -4,10 +4,6 @@ const nextConfig = {
     ignoredBuildErrors: true,
   },
 
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-
   experimental: {
     serverActions: true,
     serverComponentsExternalPackages: ["mongoose"],
