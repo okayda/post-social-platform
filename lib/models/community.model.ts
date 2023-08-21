@@ -12,7 +12,7 @@ const communitySchema = new mongoose.Schema({
     ref: "User",
   },
   threads: [{ type: mongoose.Schema.Types.ObjectId, ref: "Thread" }],
-  memebers: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  members: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 
 // At the first place the model won't be exist so will create a new model after that will use the existed model
