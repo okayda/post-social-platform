@@ -197,6 +197,8 @@ export async function fetchThreadById(threadId: string) {
       })
       .exec();
 
+    console.log(thread);
+
     return thread;
   } catch (err) {
     console.error("Error while fetching thread:", err);
