@@ -15,18 +15,16 @@ import { Input } from "../ui/input";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
-// import { updateUser } from "@/lib/actions/user.actions";
-import { CommentValidation } from "@/lib/validations/thread";
-import { addCommentToThread } from "@/lib/actions/thread.actions";
-// import { createThread } from "@/lib/actions/thread.actions";
+import { CommentValidation } from "@/lib/validations/post";
+import { addCommentToPost } from "@/lib/actions/post.actions";
 
 interface Props {
-  threadId: string;
+  postId: string;
   currentUserImg: string;
   currentUserId: string;
 }
 
-const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
+const Comment = ({ postId, currentUserImg, currentUserId }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -34,14 +32,14 @@ const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
     resolver: zodResolver(CommentValidation),
 
     defaultValues: {
-      thread: "",
+      post: "",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
-    await addCommentToThread(
-      threadId,
-      values.thread,
+    await addCommentToPost(
+      postId,
+      values.post,
       JSON.parse(currentUserId),
       pathname
     );
@@ -54,7 +52,7 @@ const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="comment-form">
         <FormField
           control={form.control}
-          name="thread"
+          name="post"
           render={({ field }) => (
             <FormItem className="flex items-center  gap-3 w-full">
               <FormLabel>

@@ -14,7 +14,6 @@ async function Page() {
 
   if (!userInfo?.onboarded) redirect("/onboarding");
 
-  // TODO: getActivity
   const activity = await getActivity(userInfo._id);
 
   return (
@@ -25,13 +24,13 @@ async function Page() {
         {activity.length > 0 ? (
           <>
             {activity.map((act) => (
-              <Link key={act._id} href={`thread/${act.parentId}`}>
-                <article className="activity-card">
+              <Link key={act._id} href={`post/${act.parentId}`}>
+                <article className="activity-card mb-2">
                   <Image
                     src={act.author.image}
                     alt=""
-                    width={20}
-                    height={20}
+                    width={40}
+                    height={40}
                     className="rounded-full object-cover"
                   />
                 </article>
@@ -40,7 +39,7 @@ async function Page() {
                   <span className="mr-1 text-primary-500">
                     {act.author.name}
                   </span>{" "}
-                  replied to your thread
+                  replied to your post
                 </p>
               </Link>
             ))}

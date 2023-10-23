@@ -14,46 +14,26 @@ import {
 } from "@/components/ui/form";
 import { Textarea } from "../ui/textarea";
 import { usePathname, useRouter } from "next/navigation";
-import { ThreadValidation } from "@/lib/validations/thread";
-import { createThread } from "@/lib/actions/thread.actions";
+import { PostValidation } from "@/lib/validations/post";
+import { createPost } from "@/lib/actions/post.actions";
 
-import { useOrganization } from "@clerk/nextjs";
-
-// import { updateUser } from "@/lib/actions/user.actions";
-// import { UserValidation } from "@/lib/validations/user";
-interface Props {
-  user: {
-    id: string;
-    objectId: string;
-    username: string;
-    name: string;
-    bio: string;
-    image: string;
-  };
-
-  btnTitle: string;
-}
-
-function PostThread({ userId }: { userId: string }) {
+function Post({ userId }: { userId: string }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const { organization } = useOrganization();
-
-  const form = useForm<z.infer<typeof ThreadValidation>>({
-    resolver: zodResolver(ThreadValidation),
+  const form = useForm<z.infer<typeof PostValidation>>({
+    resolver: zodResolver(PostValidation),
 
     defaultValues: {
-      thread: "",
+      post: "",
       accountId: userId,
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
-    await createThread({
-      text: values.thread,
+  const onSubmit = async (values: z.infer<typeof PostValidation>) => {
+    await createPost({
+      text: values.post,
       author: userId,
-      communityId: organization ? organization.id : null,
       path: pathname,
     });
 
@@ -68,7 +48,7 @@ function PostThread({ userId }: { userId: string }) {
       >
         <FormField
           control={form.control}
-          name="thread"
+          name="post"
           render={({ field }) => (
             <FormItem className="flex flex-col  gap-3 w-full">
               <FormLabel className="text-base-semibold text-light-2">
@@ -88,11 +68,11 @@ function PostThread({ userId }: { userId: string }) {
         />
 
         <Button type="submit" className="bg-primary-500">
-          Post Thread
+          Post
         </Button>
       </form>
     </Form>
   );
 }
 
-export default PostThread;
+export default Post;

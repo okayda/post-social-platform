@@ -33,11 +33,9 @@ interface Props {
     bio: string;
     image: string;
   };
-
-  btnTitle: string;
 }
 
-const AccountProfile = ({ user, btnTitle }: Props) => {
+const AccountProfile = ({ user }: Props) => {
   // allowing a user to upload a profile picture
   const [files, setFiles] = useState<File[]>([]);
 
@@ -94,8 +92,6 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
         values.profile_photo = imgRes[0].url;
       }
     }
-
-    // TODO: Update user profile
 
     await updateUser({
       userId: user.id,

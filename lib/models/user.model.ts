@@ -7,9 +7,8 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   image: String,
   bio: String,
-  threads: [{ type: mongoose.Schema.Types.ObjectId, ref: "Thread" }],
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
   onboarded: { type: Boolean, default: false },
-  communities: [{ type: mongoose.Schema.Types.ObjectId, ref: "Community" }],
 });
 
 // At the first place the model won't be exist so will create a new model after that will use the existed model

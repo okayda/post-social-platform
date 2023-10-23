@@ -1,26 +1,14 @@
-import { formatDateString } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { format } from "path";
 
 interface Props {
   id: string;
-  currentUserId: string;
-  parentId: string | null;
   content: string;
   author: {
     name: string;
     image: string;
     id: string;
   };
-
-  community: {
-    id: string;
-    name: string;
-    image: string;
-  } | null;
-
-  createdAt: string;
   comments: {
     author: {
       iamge: string;
@@ -29,17 +17,7 @@ interface Props {
   isComment?: boolean;
 }
 
-const ThreadCard = ({
-  id,
-  currentUserId,
-  parentId,
-  content,
-  author,
-  community,
-  createdAt,
-  comments,
-  isComment,
-}: Props) => {
+const PostCard = ({ id, content, author, comments, isComment }: Props) => {
   return (
     <article
       className={`flex w-full flex-col rounded-xl ${
@@ -79,7 +57,7 @@ const ThreadCard = ({
                   className="cursor-pointer object-contain"
                 />
 
-                <Link href={`/thread/${id}`}>
+                <Link href={`/post/${id}`}>
                   <Image
                     src="/assets/reply.svg"
                     alt=""
@@ -107,7 +85,7 @@ const ThreadCard = ({
               </div>
 
               {isComment && comments.length > 0 && (
-                <Link href={`/thread/${id}`}>
+                <Link href={`/post/${id}`}>
                   <p className="mt-1 text-subtle-medium text-gray-1">
                     {comments.length} replies
                   </p>
@@ -116,29 +94,9 @@ const ThreadCard = ({
             </div>
           </div>
         </div>
-
-        {/* // TODO: delete thread 
-            // TODO: show comments logo */}
       </div>
-      {!isComment && community && (
-        <Link
-          href={`/communities/${community.id}`}
-          className="mt-5 flex items-center"
-        >
-          <p className="text-subtle-medium text-gray-1">
-            {formatDateString(createdAt)} - {community.name} Community
-            <Image
-              src={community.image}
-              alt=""
-              width={14}
-              height={14}
-              className="ml-1 rounded-full object-cover"
-            />
-          </p>
-        </Link>
-      )}
     </article>
   );
 };
 
-export default ThreadCard;
+export default PostCard;

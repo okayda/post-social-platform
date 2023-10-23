@@ -1,18 +1,13 @@
 import mongoose from "mongoose";
 
 // Pattern to insert and retrived data to the database
-const threadSchema = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
   text: { type: String, required: true },
 
   author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
-  },
-
-  community: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Community",
   },
 
   createdAt: {
@@ -27,12 +22,12 @@ const threadSchema = new mongoose.Schema({
   children: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Thread",
+      ref: "Post",
     },
   ],
 });
 
 // At the first place the model won't be exist so will create a new model after that will use the existed model
-const Thread = mongoose.models.Thread || mongoose.model("Thread", threadSchema);
+const Post = mongoose.models.Post || mongoose.model("Post", postSchema);
 
-export default Thread;
+export default Post;
