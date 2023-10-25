@@ -67,7 +67,10 @@ function Post({ userId }: { userId: string }) {
           )}
         />
 
-        <Button type="submit" className="bg-primary-500">
+        <Button
+          type="submit"
+          className=" bg-neutral-900 hover:bg-neutral-800 border border-gray-700"
+        >
           Post
         </Button>
       </form>

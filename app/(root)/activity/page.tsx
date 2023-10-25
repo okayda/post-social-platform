@@ -25,7 +25,7 @@ async function Page() {
           <>
             {activity.map((act) => (
               <Link key={act._id} href={`post/${act.parentId}`}>
-                <article className="activity-card mb-2">
+                <article className="activity-card mb-3">
                   <Image
                     src={act.author.image}
                     alt=""

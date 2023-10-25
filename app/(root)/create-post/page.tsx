@@ -12,10 +12,12 @@ async function Page() {
 
   if (!userInfo?.onboarded) redirect("/onboarding");
 
+  const userId = userInfo._id;
+
   return (
     <>
-      <h1 className="head-text">Create Post</h1>
-      <Post userId={userInfo._id} />
+      <h1 className="head-text mb-2">Create Post</h1>
+      <Post userId={String(userId)} />
     </>
   );
 }
