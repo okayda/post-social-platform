@@ -20,6 +20,8 @@ async function Page({ params }: { params: { id: string } }) {
   return (
     <section>
       <ProfileHeader
+        currentUserId={user.id}
+        targetUserId={userInfo.id}
         name={userInfo.name}
         username={userInfo.username}
         imgUrl={userInfo.image}

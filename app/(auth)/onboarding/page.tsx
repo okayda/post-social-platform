@@ -10,8 +10,6 @@ async function Page() {
   const userInfo = await fetchUser(user.id);
   if (userInfo?.onboarded) redirect("/");
 
-  console.log(user.emailAddresses[0].emailAddress);
-
   const userData = {
     id: user?.id,
     objectId: userInfo?._id,

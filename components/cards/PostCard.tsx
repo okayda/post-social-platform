@@ -68,10 +68,10 @@ const PostCard = ({ id, content, author, comments, isComment }: Props) => {
                 </Link>
 
                 <Image
-                  src="/assets/repost.svg"
+                  src="/assets/bookmark.svg"
                   alt=""
-                  width={24}
-                  height={24}
+                  width={20}
+                  height={20}
                   className="cursor-pointer object-contain"
                 />
 

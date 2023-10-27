@@ -49,7 +49,11 @@ const Comment = ({ postId, currentUserImg, currentUserId }: Props) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="comment-form">
+      <form
+        autoComplete="off"
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="comment-form"
+      >
         <FormField
           control={form.control}
           name="post"

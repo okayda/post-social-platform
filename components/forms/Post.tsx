@@ -43,6 +43,7 @@ function Post({ userId }: { userId: string }) {
   return (
     <Form {...form}>
       <form
+        autoComplete="off"
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col justify-start gap-10"
       >

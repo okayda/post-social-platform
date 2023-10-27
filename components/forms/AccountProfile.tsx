@@ -102,8 +102,9 @@ const AccountProfile = ({ user }: Props) => {
       path: pathname,
     });
 
-    if (pathname === "/profile/edit") {
+    if (pathname.split("/").includes("change")) {
       router.back();
+      router.refresh();
     } else {
       router.push("/");
     }
@@ -112,6 +113,7 @@ const AccountProfile = ({ user }: Props) => {
   return (
     <Form {...form}>
       <form
+        autoComplete="off"
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col justify-start gap-10"
       >

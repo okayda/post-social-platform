@@ -1,16 +1,44 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
+  targetUserId: string;
+  currentUserId: string;
   name: string;
   username: string;
   imgUrl: string;
   bio: string;
 }
 
-const ProfileHeader = ({ name, username, imgUrl, bio }: Props) => {
+const ProfileHeader = ({
+  targetUserId,
+  currentUserId,
+  name,
+  username,
+  imgUrl,
+  bio,
+}: Props) => {
+  const pathname = usePathname();
+
   return (
-    <div className="flex w-full flex-col justify-start">
-      <div className="flex items-center justify-between">
+    <div className="flex w-full flex-col justify-start flex-row">
+      <div
+        className={`flex items-center justify-between ${
+          targetUserId === currentUserId ? "flex-row-reverse" : ""
+        }`}
+      >
+        {targetUserId === currentUserId && (
+          <Link
+            href={`${pathname}/change`}
+            className="px-4 py-2 text-light-2  border border-gray-700  rounded-lg"
+          >
+            Change
+          </Link>
+        )}
+
         <div className="flex items-center gap-3">
           <div className="relative h-20 w-20 object-cover">
             <Image
